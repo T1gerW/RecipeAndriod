@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Recipe_appTheme {
-                // Display the recipe card on a single screen
                 RecipeCard()
             }
         }
@@ -36,20 +35,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun RecipeCard() {
-    // A Card to hold the entire recipe content
     Card(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
-        // Column organizes recipe sections vertically
         Column(
             modifier = Modifier
-                .background(Color(0xFFF5F5F5))      // Light background for the card content
+                .background(Color(0xFFF5F5F5))
                 .padding(16.dp)
         ) {
-            // Box to center the title
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -62,17 +58,13 @@ fun RecipeCard() {
                     fontWeight = FontWeight.Bold
                 )
             }
-
-            // A divider below the title
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 color = Color.Gray,
                 thickness = 1.dp
             )
-
-            // Display the recipe image
             Image(
-                painter = painterResource(id = R.drawable.spaghetti), // Replace with your drawable
+                painter = painterResource(id = R.drawable.spaghetti),
                 contentDescription = "Recipe image",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,57 +72,43 @@ fun RecipeCard() {
                     .clip(RoundedCornerShape(4.dp)),
                 contentScale = ContentScale.Crop
             )
-
-            // Another divider below the image
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 color = Color.Gray,
                 thickness = 1.dp
             )
-
-            // Ingredients section
             Text(
                 text = "Ingredients",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-
             Column(
                 modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
             ) {
-                // Use a Row for each ingredient
                 IngredientRow("200g spaghetti")
                 IngredientRow("100g minced meat")
-                IngredientRow("1 onion, chopped")
-                IngredientRow("2 cloves garlic, minced")
                 IngredientRow("400g canned tomatoes")
                 IngredientRow("Salt and pepper")
             }
-
-            // Divider before instructions
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 color = Color.Gray,
                 thickness = 1.dp
             )
-
-            // Cooking instructions
             Text(
                 text = "Instructions",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-
             Text(
                 text = """
                 1. Cook the spaghetti according to package instructions.
-                2. In a pan, sauté onions and garlic until fragrant.
-                3. Add the minced meat and cook until browned.
-                4. Add canned tomatoes, salt, and pepper.
-                5. Let it simmer for 15 minutes.
-                6. Serve the sauce over the spaghetti.
+                2. Cook minced meat
+                3. Add canned tomatoes, salt, and pepper.
+                4. Cook for 10 minutes
+                5. Serve the sauce over the spaghetti.
                 """.trimIndent(),
                 modifier = Modifier.padding(start = 8.dp)
             )
@@ -140,14 +118,12 @@ fun RecipeCard() {
 
 @Composable
 fun IngredientRow(ingredient: String) {
-    // A Row to display a bullet and the ingredient text
     Row(modifier = Modifier.padding(bottom = 4.dp)) {
         Text(text = "• ", fontWeight = FontWeight.Bold)
         Text(text = ingredient)
     }
 }
 
-// Preview in Android Studio
 @Preview(showBackground = true)
 @Composable
 fun PreviewRecipeCard() {
